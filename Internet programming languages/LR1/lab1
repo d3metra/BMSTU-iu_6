@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Лабораторная работа 1</title>
+</head>
+    <body>
+        <h2> Часть 1 </h2>
+        <div>
+            <h3> Первый вариант разметки </h3>
+            <p> <em>Важное</em> сообщение 
+            <p> <strong>Очень важное</strong> сообщение </p>
+            <p> <mark>Тула</mark> - город-герой </p>
+            <p> Все <s>плохо</s> <span style="color:green">нормально</span> </p>
+            <p> <small> Комментарий </small> </p>
+            <p> <var> a*x<sup>2</sup>+b*x+c=0</var></p>
+            <p> <var> x<sub>1</sub>*x<sub>2</sub>=c/a </var></p>
+            <p> <var> x<sub>1</sub>+x<sub>2</sub>=-b/a </var></p>
+            <code>
+                #include "stdio.h" <br/>
+                int main (void) { <br/>
+                puts ("Hello world"); <br/>
+                return 0; <br/>
+                } <br/>
+                end. <br/>
+            </code>
+            <p> <cite> <a href="https://vk.com/bauman_memes"> https://vk.com/bauman_memes </a> </cite> </p>
+        </div>
+        <div>
+            <h3> Второй вариант разметки </h3>
+            <p> <strong>Важное</strong> сообщение</p>
+            <p> <em>Очень важное</em> сообщение 
+        </div>
+        <h2> Часть 2 </h2>
+        <div>
+            <table border="1">
+                <tr>
+                    <th colspan="3">Расписание на вторник</th>
+                </tr>
+                <tr>
+                    <th> Время занятия </th>
+                    <td> Числитель </td>
+                    <td> Знаменатель </td>
+                </tr>
+                <tr>
+                    <td> 8:30 - 10:05 </td>
+                    <td rowspan="2"> Электротехника (лаб) </td>
+                    <td rowspan="2"> Языки интернет-программирования (лаб) </td>
+                </tr>
+                <tr>
+                    <td> 10:15 - 11:50 </td>
+                </tr>
+                <tr>
+                    <td> 12:00 - 13:35 </td>
+                    <td colspan="2"> Языки интернет-программирования (лек) </td>
+                </tr>
+                <tr>
+                    <td> 13:50 - 15:25 </td>
+                    <td colspan="2"> Базы данных (лек) </td>
+                </tr>
+            </table>
+        </div>
+        <h2> Часть 3</h2>
+        <div>
+            <table>
+                <tr>
+                    <th>Имя:</th>
+                    <td><input type="text" name="fname" /></td>
+                </tr>
+                <tr>
+                    <th>Фамилия:</th>
+                    <td><input type="text" name="lname" /></td>
+                </tr>
+                <tr>
+                    <th>Пол:</th>
+                    <td>
+                        <input type="radio" name="gender" value="М" /> М
+                        <input type="radio" name="gender" value="Ж" /> Ж
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Отправить" /></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
