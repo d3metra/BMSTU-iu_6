@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>ICS6 Bootstrap</title>
+    <link rel="stylesheet"
+          href="http://e-learning.bmstu.ru/iu6/pluginfile.php/7546/mod_folder/content/0/bootstrap.min.css">
+
+    <style>
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            margin-bottom: 40px;
+        }
+
+        main {
+            margin-top: 15px;
+        }
+
+        footer {
+            height: 40px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .my-primary {
+            background-color: #03c91c;
+            color: white;
+        }
+        h1 {
+            font-size: 2.25em
+        }
+
+        h2 {
+            font-size: 1.75em
+        }
+
+        #id1 {
+            background: #99ff99
+        }
+
+        #cursive {
+            font-family: cursive
+        }
+
+        #id9 {
+            font-family: Tahoma;
+            font-weight: 700;
+            color: aquamarine;
+            background: #2a2a2a
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark my-primary">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                    <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-4">
+                <img src="https://yt3.ggpht.com/ytc/AKedOLQ89j-3EkkOERG1zSs5bvKX13SJAXc7xzFkbTOW=s900-c-k-c0x00ffffff-no-rj" 
+                alt="avatar" width="250" height="150">
+            </div>
+            <div class="col-8">
+                <p>Пацанская страница</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <table>
+                    <tr>
+                        <th>Имя:</th>
+                        <td><input type="text" name="fname" /></td>
+                    </tr>
+                    <tr>
+                        <th>Фамилия:</th>
+                        <td><input type="text" name="lname" /></td>
+                    </tr>
+                    <tr>
+                        <th>Пол:</th>
+                        <td>
+                            <input type="radio" name="gender" value="м" /> М
+                            <input type="radio" name="gender" value="ж" /> Ж
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><input class="btn btn-primary" type="submit" value="Отправить"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-4">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th colspan="3">Расписание на вторник</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th> Время занятия </th>
+                            <th> Числитель </th>
+                            <th> Знаменатель </th>
+                        </tr>
+                        <tr>
+                            <td> 8:30 - 10:05 </td>
+                            <td rowspan="2"> Электротехника (лаб)  </td>
+                            <td rowspan="2"> Языки интернет-программирования (лаб) </td>
+                        </tr>
+                        <tr>
+                            <td> 10:15 - 11:50 </td>
+                        </tr>
+                        <tr>
+                            <td> 12:00 - 13:35 </td>
+                            <td colspan="2"> Языки интернет-программирования (лек) </td>
+                        </tr>
+                        <tr>
+                            <td> 13:50 - 15:25 </td>
+                            <td colspan="2"> Базы данных (лек) </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col" style="font-size:1.2em; width:300px; padding-left:50px">
+            <p>Первая <span style="color:palevioletred">строчка</span></p>
+            <p id="id1">Зелёная строчка</p>
+            <p id="cursive">Курсивная строчка</p>
+            <p style="font-weight:bold">Жирная строчка</p>
+            <p style="font-family:cursive;font-weight:bold">Жирно-курсивная строчка</p>
+            <p style="background:black; color:antiquewhite">Бежевая строчка</p>
+            <p style="border:solid">Cтрочка в рамке</p>
+            <p><span style="color:blue">Полицейская</span> <span style="color:red">строчка</span></p>
+            <p id="id9">Девятая строчка</p>
+            <p style="font-family:Dubai">Десятая строчка</p>
+            </div>
+        </div>
+    </main>
+    <footer class="my-primary">
+        <div class="container">
+            <p class="footer-text">Footer</p>
+        </div>
+    </footer>
+</body>
+</html>
