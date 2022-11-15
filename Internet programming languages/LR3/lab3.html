@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Лабораторная работа №3</title>
+        <style>
+            table, th, td, tr{border:1px solid black}
+        </style>
+        <script type="text/javascript" src="script.js"></script>
+    </head>
+    <body style="width:500px">   
+        <h1 style="border:2px solid black">Первый заголовок</h1>
+        <div style="border:2px solid blue">
+            <p style="border:2px solid rgb(218, 12, 118)">Текст внутри дива</p>
+            <p style="border:2px solid rgb(59, 212, 59)">Текст с атрибутом <span style="color:rgb(190, 190, 42)">span</span> внутри дива</p>
+            <div style="border:2px solid rgb(235, 158, 25)">
+                <h2>Второй заголовок внутри дива внутри дива</h2>
+                <table style="border:2px">
+                    <tr>
+                        <th colspan="3">Таблица внутри дива внутри дива</th>
+                    </tr>
+                    <tr>
+                        <th> Время занятия </th>
+                        <td> Числитель </td>
+                        <td> Знаменатель </td>
+                    </tr>
+                    <tr>
+                        <td> 8:30 - 10:05 </td>
+                        <td rowspan="2"> Электротехника (лаб) </td>
+                        <td rowspan="2"> Языки интернет-программирования (лаб) </td>
+                    </tr>
+                    <tr>
+                        <td> 10:15 - 11:50 </td>
+                    </tr>
+                    <tr>
+                        <td> 12:00 - 13:35 </td>
+                        <td colspan="2"> Языки интернет-программирования (лек) </td>
+                    </tr>
+                    <tr>
+                        <td> 13:50 - 15:25 </td>
+                        <td colspan="2"> Базы данных (лек) </td>
+                    </tr>
+                </table>
+            </div>
+        </div>    
+        <div class="invisible" id="result" Style="margin-top:50px">
+            <button style="margin-top: 5px" class="invisible" onclick="activate()">Вывести дерево</button>           
+        </div>
+    </body>
+</html>
