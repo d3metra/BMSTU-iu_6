@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Лабораторная работа №2</title>
+    <meta charset="UTF-8">
+    <style>
+        html{font-family:Arial}
+        h1{font-size:2.25em}
+        h2{font-size: 1.75em}
+        #id1{background: #99ff99}
+        #cursive{font-family:cursive}
+        #id9 {font-family: Tahoma;font-weight: 700;color: aquamarine;background: #2a2a2a}  
+        .table{display:table; border-collapse:collapse}
+        .theader{display: table-header-group}
+        .row{display:table-row; }
+        .cell{display:table-cell; border: 1px solid black; text-align:center; padding-inline:5px; padding-bottom:5px}
+    </style>
+</head>
+    <body>
+        <h1>Часть 1</h1>
+        <h2 style="float:left; margin-right:25px; height:350px">1)</h2>
+        <div style="font-size:1.2em; width:300px; padding-left:50px">
+            <p>Первая <span style="color:palevioletred">строчка</span></p>
+            <p id="id1">Зелёная строчка</p>
+            <p id="cursive">Курсивная строчка</p>
+            <p style="font-weight:bold">Жирная строчка</p>
+            <p style="font-family:cursive;font-weight:bold">Жирно-курсивная строчка</p>
+            <p style="background:black; color:antiquewhite">Бежевая строчка</p>
+            <p style="border:solid">Cтрочка в рамке</p>
+            <p><span style="color:blue">Полицейская</span> <span style="color:red">строчка</span></p>
+            <p id="id9">Девятая строчка</p>
+            <p style="font-family:Dubai">Десятая строчка</p>
+        </div>
+        <h2 style="float:left; margin-right:25px; height:300px">2)</h2>
+        <div class="table">
+            <div class="theader">
+                Расписание на вторник
+            </div>
+            <div class="row">
+                <div class="cell">
+                    Время занятия
+                </div>
+                <div class="cell">
+                    Числитель
+                </div>
+                <div class="cell">
+                    Знаменатель
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    8:30 - 10:05
+                </div>
+                <div class="cell">
+                    Электротехника (лаб)
+                </div>
+                <div class="cell">
+                    Языки интернет-программирования (лаб)
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    10:15 - 11:50
+                </div>
+                <div class="cell">
+                    Электротехника (лаб)
+                </div>
+                <div class="cell">
+                    Языки интернет-программирования (лаб)
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    12:00 - 13:35
+                </div>
+                <div class="cell">
+                    Языки интернет-программирования (лек)
+                </div>
+                <div class="cell">
+                    Языки интернет-программирования (лек)
+                </div>
+            </div>
+            <div class="row">
+                <div class="cell">
+                    13:50 - 15:25
+                </div>
+                <div class="cell">
+                    Базы данных (лек)
+                </div>
+                <div class="cell">
+                    Базы данных (лек)
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
