@@ -1,0 +1,20 @@
+<h2>Нахождение наибольшего общего делителя и наименьшего общего кратного двух целых чисел</h2>
+<% if !flash.empty? %>
+ <div class = "error_msg">
+  <p style = "margin: 1px">Некорректный ввод:</p>
+    <% flash.each do |_, msg| %>
+            <p style = "margin: 7px 0 3px 10px" > <%= msg %> </p> 
+    <% end %>
+    <p style = "margin-top: 5px, margin-left:1px">Попробуйте снова.</p>
+  </div>
+<% end %>
+<%= form_with url: show_path, method: :get do |form| %>
+    <%= form.label :numbers, "Введите целое число 1: " %>
+    <%= form.number_field :number1%> <br>
+    <%= form.label :numbers, "Введите целое число 2: " %>
+    <%= form.number_field :number2 %> <br>
+    <%= form.submit "Submit" %>
+  <% end %>
+  <br>
+<%= link_to "Show XML", bd_path %>
+  

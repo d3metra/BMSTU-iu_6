@@ -1,0 +1,24 @@
+<h1>Sign in</h1>
+<% if !flash.empty? %>
+ <div id = "error_msg">
+  <p style = "margin: 1px">Ошибка:</p>
+    <% flash.each do |_, msg| %>
+            <p style = "margin: 7px 0 3px 10px" id='message' > <%= msg %> </p> 
+    <% end %>
+    <p style = "margin-top: 0px, margin-left:1px">Попробуйте снова.</p>
+  </div>
+<% end %>
+<%= form_with url: create_session_path, method: :get do |form| %>
+    <%= form.label :email, "Почта: " %> <br>
+    <%= form.email_field :email%> <br>
+    <%= form.label :password, "Пароль:  " %> <br>
+    <%= form.password_field :password %> <br>
+    <br>
+    <%= form.submit "Submit" %>
+  <% end %>
+<br>
+<%= link_to "New User ", new_user_path %>
+|
+<%= link_to " Users list", users_path %>
+<br><br>
+<%= link_to "Log out", exit_session_path %>
