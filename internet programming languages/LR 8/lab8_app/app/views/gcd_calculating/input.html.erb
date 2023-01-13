@@ -1,0 +1,10 @@
+<h2>Нахождение наибольшего общего делителя и наименьшего общего кратного двух целых чисел</h2>
+
+<%= form_with url: output_path, method: :get do |form| %>
+    <%= form.label :numbers, "Введите целое число 1: " %>
+    <%= form.number_field :number1%> <br>
+    <%= form.label :numbers, "Введите целое число 2: " %>
+    <%= form.number_field :number2 %> <br>
+    <%= form.submit "Submit" %>
+  <% end %>
+  
