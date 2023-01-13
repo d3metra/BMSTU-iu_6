@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6">
+            <h3>Добавление упражнения в каталог</h3>
+                <%= render 'form', exercise: @exercise %>
+            <%= link_to 'Отмена', root_path, class: 'btn btn-danger col-3 mt-3' %>
+        </div>
+    </div>
+</div>

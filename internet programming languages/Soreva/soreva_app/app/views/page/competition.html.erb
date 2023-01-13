@@ -1,0 +1,399 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark border-bottom">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">Soreva</a>
+            <img src="/images/soreva_icon.png" height="40">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to t('global.exercises'), root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.users'), users_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.сompetitions'), competition_path, class: 'nav-link active' %>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <% if current_user.present? %>
+                    <%= link_to t('global.my_profile'), user_path(current_user.id), class: 'btn btn-primary' %>
+                <% else %>
+                    <%= link_to t('global.login'), new_session_path, class: 'btn btn-success' %>
+                    <%= link_to t('global.register'), new_user_path, class: 'btn btn-primary ms-3'%>
+                <% end %>
+            </div>
+         </div>
+    </nav>
+</header>
+
+
+<div class="container">
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#bench_press_max" aria-controls="collapseExample">
+            <%= t 'exercises.bench_press_max' %>
+        </button>   
+    </div>
+    <div class="collapse" id="bench_press_max">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(bench_press_max: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.bench_press_max%>
+                            <%= competitor.result.bench_press_max %> 
+                            <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+    
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#bench_press" aria-controls="collapseExample">
+            <%= t 'exercises.bench_press' %>
+        </button>   
+    </div>
+    <div class="collapse" id="bench_press">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(bench_press: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.bench_press %>
+                            <%= competitor.result.bench_press %> 
+                            <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#pull_ups_max" aria-controls="collapseExample">
+            <%= t 'exercises.pull_ups_max' %>
+        </button>   
+    </div>
+    <div class="collapse" id="pull_ups_max">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(pull_ups_max: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.pull_ups_max %>
+                            <%= competitor.result.pull_ups_max %> 
+                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#pull_ups" aria-controls="collapseExample">
+            <%= t 'exercises.pull_ups' %>
+        </button>   
+    </div>
+    <div class="collapse" id="pull_ups">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(pull_ups: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.pull_ups %>
+                            <%= competitor.result.pull_ups %> 
+                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#push_ups_bars_max" aria-controls="collapseExample">
+            <%= t 'exercises.push_ups_bars_max' %>
+        </button>   
+    </div>
+    <div class="collapse" id="push_ups_bars_max">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(push_ups_bars_max: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.push_ups_bars_max%>
+                            <%= competitor.result.push_ups_bars_max %> 
+                            <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#push_ups_bars" aria-controls="collapseExample">
+            <%= t 'exercises.push_ups_bars' %>
+        </button>   
+    </div>
+    <div class="collapse" id="push_ups_bars">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(push_ups_bars: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.push_ups_bars %>
+                            <%= competitor.result.push_ups_bars %> 
+                            <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#barbell_squat" aria-controls="collapseExample">
+            <%= t 'exercises.barbell_squat' %>
+        </button>   
+    </div>
+    <div class="collapse" id="barbell_squat">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(barbell_squat: :desc).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.barbell_squat %>
+                            <%= competitor.result.barbell_squat %> 
+                            <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>
+
+    <div class="row mt-4">
+        <button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#run_100m" aria-controls="collapseExample">
+            <%= t 'exercises.run_100m' %>
+        </button>   
+    </div>
+    <div class="collapse" id="run_100m">
+         <table class="table table-striped table-dark mt-2 rounded">
+            <thead>
+                <th class="font-monospace text-center col-1"><%= t '.place' %></th>
+                <th class="font-monospace text-center"><%= t '.user' %></th>
+                <th class="font-monospace text-center"><%= t '.result' %></th>
+            </thead>
+            <% @competitors.joins(:result).order(:run_100m).each.with_index(1) do |competitor, i| %>
+                <tr>
+                    <td class="text-center align-middle">
+                        <span class="fst-italic"><%= "##{i}" %></span>
+                        <% case i %>
+                            <% when 1 %>
+                                <img src="/images/gold.png" height="50px">
+                            <% when 2 %>
+                                <img src="/images/silver.png" height="50px">
+                            <% when 3 %>
+                                <img src="/images/bronze.png" height="50px">
+                        <% end %>
+                    </td>
+                    <td class="align-middle">
+                        <% if competitor.avatar.present? %>
+                            <%= image_tag competitor.thumbnail %>
+                        <% else %>
+                            <img src="/images/default_avatar.png", height="50px">
+                        <% end %>
+                        <%= link_to competitor.username, user_path(competitor.id), class: 'offset-1 link-light'%>
+                    </td>
+                    <td class="ps-5 align-middle">
+                        <% if competitor.result.run_100m %>
+                            <%= competitor.result.run_100m %> 
+                        <span class="fs-5 text  -muted fst-italic offset-1">сек</span>
+                        <% else %>
+                            <span class="fs-5 text-muted fst-italic"><%= t '.no_result' %></span>
+                        <% end %>
+                    </td>
+                </tr>
+            <% end %>
+         </table>
+    </div>

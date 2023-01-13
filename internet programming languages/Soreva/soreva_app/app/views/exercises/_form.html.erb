@@ -1,0 +1,53 @@
+<%= form_with model: exercise do |form| %>
+    <div class="mt-4">
+        <% if exercise.errors[:image].any? %>
+            <div class="error-message fst-italic">
+                <% exercise.errors[:image].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Изображение:' %>
+        <%= form.file_field :image, class: 'form-control' %>
+    </div>
+    <div class="mt-2">
+        <% if exercise.errors[:name].any? %>
+            <div class="error-message fst-italic">
+                <% exercise.errors[:name].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Упражнение:' %>
+        <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="mt-2">
+        <%= form.label 'Группа мышц/Тип:' %>
+        <%= form.select :exercise_type, ['Грудные мышцы', 'Мышцы спины', 'Трицепс', 'Бицепс', 'Мышцы ног', 'Мышцы кора', 'Кардио']%>
+    </div>
+    <div class="mt-4">
+        <% if exercise.errors[:description].any? %>
+            <div class="error-message fst-italic">
+                <% exercise.errors[:description].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Описание:' %>
+        <%= form.text_area :description, class: 'form-control', rows: '7' %>
+    </div>
+    <div class="mt-2">
+        <% if exercise.errors[:technique].any? %>
+            <div class="error-message fst-italic">
+                    <% exercise.errors[:technique].each do |error| %>
+                        <div><%= error %></div>
+                    <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Техника выполнения:' %>
+        <%= form.text_area :technique, class: 'form-control', rows: '7' %>
+    </div>
+    <div class="mt-2">
+        <%= form.submit 'Добавить упражнение', class: 'btn btn-primary col-12' %>
+    </div>
+<% end %>

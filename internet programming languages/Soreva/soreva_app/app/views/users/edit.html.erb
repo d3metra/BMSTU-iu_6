@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <h3><%= "Редактирование данных пользователя:" %></h3>
+                <%= render 'edit_form', user: @user %>
+            <%= link_to 'Отмена', @user, class: 'btn btn-danger col-3 mt-3' %>
+        </div>
+    </div>
+</div>

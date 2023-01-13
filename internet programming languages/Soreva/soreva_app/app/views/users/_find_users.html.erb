@@ -1,0 +1,14 @@
+<% if @find_users.any? %>   
+    <% @find_users.each do |user| %>
+        <div class="col-12 mt-2 pb-1 border-bottom">
+            <% if user.avatar.present? %>
+                    <%= image_tag user.preview, class: 'offset-4'%>
+                <% else %>
+                    <img src="/images/default_avatar.png", height="100px", class="offset-4">
+                <% end %>
+            <%= link_to user.username, user_path(user.id), class: 'fs-2' %>
+        </div>
+    <% end %>   
+<% else %>
+    <h4 class='fst-italic text-center mt-5'>Пользователь не найден</h4>
+<% end %>

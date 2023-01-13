@@ -1,0 +1,64 @@
+<%= form_with model: user do |form| %>
+    <div class="mt-4">
+        <% if user.errors[:username].any? %>
+            <div class="error-message fst-italic">
+                <% user.errors[:username].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Имя пользователя: ' %>
+        <%= form.text_field :username, class: 'form-control', placeholder: 'Имя пользователя' %>
+    </div>
+    <div class="mt-2">
+        <% if user.errors[:avatar].any? %>
+            <div class="error-message fst-italic">
+                <% user.errors[:avatar].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Аватар пользователя: ' %>
+        <%= form.file_field :avatar, class: 'form-control' %>
+    </div>
+    <div class="mt-4">
+        <% if user.errors[:email].any? %>
+            <div class="error-message fst-italic">
+                <% user.errors[:email].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+            </div>
+        <% end %>
+        <%= form.label 'Почта: ' %>
+        <%= form.text_field :email, class: 'form-control', placeholder: 'email@example.com' %>
+    </div>
+    <div class="mt-4">
+        <% if user.errors[:password].any? %>
+            <div class="error-message fst-italic">
+                <% user.errors[:password].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+              </div>
+        <% end %>
+        <%= form.label 'Новый пароль: ' %>
+        <%= form.password_field :password, class: 'form-control', placeholder: 'Password' %>
+    </div>
+    <div class="mt-4">
+        <%= form.label 'Повторите новый пароль: ' %>
+        <%= form.password_field :password_confirmation, class: 'form-control', placeholder: 'Password' %>
+    </div>
+    <div class="mt-5">
+        <% if user.errors[:old_password].any? %>
+            <div class="error-message fst-italic">
+                <% user.errors[:old_password].each do |error| %>
+                    <div><%= error %></div>
+                <% end %>
+              </div>
+        <% end %>
+        <%= form.label 'Подтвердите старый пароль: ' %>
+        <%= form.password_field :old_password, class: 'form-control', placeholder: 'Password' %>
+    </div>
+    <div class="mt-4">
+        <%= form.submit value: 'Сохранить измененеия', class: 'btn btn-primary col-md-12'%>
+    </div>
+<% end %>

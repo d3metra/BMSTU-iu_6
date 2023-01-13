@@ -1,0 +1,9 @@
+<div class="container mt-5">
+  <div class="row mt-5">
+    <div class='col-md-6 offset-3'>
+      <h2><%= t '.register' %></h2>
+      <%= render 'reg_form', user: @user %>
+      <%= link_to t('global.back'), root_path, class: 'btn btn-danger col-md-3 mt-3' %>
+    </div>
+  </div>
+</div>

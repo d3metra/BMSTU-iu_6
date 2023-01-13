@@ -1,0 +1,83 @@
+en:
+  global:
+    exercises: 'Exercises'
+    users: 'Users'
+    сompetitions: 'Competentions'
+    my_profile: 'My profile'
+    login: 'Sign in'
+    register: 'Register'
+    back: 'Back'
+
+  page:
+    main:
+      welcome: 'Welcome to Soreva!'
+      descript1: 'Here you can compete with your friends in various sports disciplines, tracking your results.'
+      descript2: 'You also have the opportunity to look at exercises that interest you muscle groups and familiarize themselves with the technique of their implementation.'
+      descript3: 'Get better and stronger together!'
+      add_new_exercise: 'Add a new exercise to the catalog'
+
+  competition:
+    place: 'Place:'
+    user: 'User:'
+    result: 'Result:'
+    no_result: 'No result'
+    times: 'times'
+    kg: 'kg'
+
+  session:
+    new:
+      sign_in: 'Sign in'
+      have_account: 'Dont have an account yet?'
+      create: 'Create'
+      sign: 'Sign in'
+
+  user:
+    username: 'Username'
+    avatar: 'User avatar:'
+    email: 'Email'
+    password: 'Password'
+    password_conf: 'Confirm password:'
+
+  users:
+    new:
+      register: 'Register'
+      create: 'Create account'
+    index:
+      search: 'Search'
+    show:
+      settings: 'Settings'
+      edit_data: 'Edit data'
+      sign_out: 'Log out'
+      delete_account: 'Delete account'
+      remove_from_friends: 'Remove from friends'
+      cancel_request: 'Cancel request'
+      add_friend: 'Add to friends'
+      s_results: 'Sports results'
+      friend_list: 'Friends'
+      empty: 'Friend-list is empty'
+      incoming_requests: 'Incoming_requests:'
+      sport: 'Sports discipline'
+      result: 'Result'
+      no_result: 'No result'
+      times: 'times'
+      kg: 'kg'
+      sec: 'sec'
+
+  muscle_group:
+    pectoral_muscles: 'Pectoral muscles'
+    back_muscles: 'Back muscles'
+    triceps: 'Triceps'
+    biceps: 'Biceps'
+    leg_muscles: 'Leg muscles'
+    сore_muscles: 'Core muscles'
+    cardio: 'Cardio'
+
+  exercises:
+    bench_press_max: 'Bench press(weight Limit)'
+    bench_press: 'Bench press(own weight)'
+    pull_ups_max: 'Pull-ups(weight Limit)'
+    pull_ups: 'Pull-ups(own weight)'
+    push_ups_bars_max: 'Push-ups on bars(weight Limit)'
+    push_ups_bars: 'Push-ups on bars(own weight)'
+    barbell_squat: 'Barbell squat(weight Limit)'
+    run_100m: '100 meters run'

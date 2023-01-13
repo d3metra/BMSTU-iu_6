@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6 offset-3 mt-5">
+            <h2><%= t '.sign_in' %></h2>
+            <%= form_with url: create_session_path, method: :post do |form| %>
+                <p class="mt-4">
+                    <% if flash[:alert].present? %>
+                        <div class="error-message fst-italic"><%= alert %></div>
+                    <% end %>
+                    <%= form.label (t('user.username') + ':') %>
+                    <%= form.text_field :email, class: 'form-control', placeholder: 'email@example.com' %>
+                </p>
+                <p class="mt-2">
+                    <%= form.label (t('user.password') + ':') %>
+                    <%= form.password_field :password, class: 'form-control', placeholder: t('user.password') %>
+                </p>
+                <p class="mt-4">
+                    <%= form.submit value: t('.sign'), class: 'btn btn-success col-12' %>
+                </p>
+                <div class="row border-top mt-3 p-1">
+                    <span class="col-5 fs-5 font-monospace my-auto"><%= t '.have_account' %></span>
+                    <%= link_to t('.create'), new_user_path, class: 'btn btn-outline-primary col-2 offset-5' %>
+                </div>
+                <%= link_to t('global.back'), root_path, class: 'btn btn-danger col-12 mt-3' %>
+            <% end %>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,240 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark border-bottom">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">Soreva</a>
+            <img src="/images/soreva_icon.png" height="40">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to t('global.exercises'), root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.users'), users_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.сompetitions'), competition_path, class: 'nav-link' %>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <% if current_user.present? %>
+                    <%= link_to t('global.my_profile'), user_path(current_user.id), class: 'btn btn-primary' %>
+                <% else %>
+                    <%= link_to t('global.login'), new_session_path, class: 'btn btn-success' %>
+                    <%= link_to t('global.register'), new_user_path, class: 'btn btn-primary ms-3'%>
+                <% end %>
+            </div>
+         </div>
+    </nav>
+</header>
+
+
+<% if flash[:notice].present? %>
+    <div class="notice-message text-center fs-5 mt-2"><%= notice %></div>
+<% end %>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-4">
+            <h3 class="ms-5"><%= @user.username %></h3>
+            <div class="mt-3">
+                <% if @user.avatar.present? %>
+                    <%= image_tag @user.ava %>
+                <% else %>
+                    <%= image_tag('/images/default_avatar.png', class: 'default_avatar') %>
+                <% end %> 
+            </div>
+            <% if current_user&.admin? || current_user == @user %>
+                <div class="dropdown mt-3">
+                    <button class="btn btn-primary dropdown-toggle col-7" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <%= t '.settings' %>
+                        <img src="/images/settings.png" height="30">
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% if current_user == @user %>
+                            <li><%= link_to t('.edit_data'), edit_user_path(@user), class: 'dropdown-item btn btn-primary col-9'%></li>
+                            <li><%= link_to t('.sign_out'), destroy_session_path, class: 'dropdown-item btn btn-danger mt-2 col-9' %></li>
+                        <% end%>
+                        <li><%= button_to t('.delete_account'), @user, method: :delete, class: 'dropdown-item btn btn-danger mt-2 col-9' %></li>
+                    </ul>
+                </div>                           
+            <% end %>
+            <% if current_user.present? && current_user != @user %>
+                <div class="mt-3">
+                    <% if current_user&.following?(@user) %>
+                        <%= button_to t('.remove_from_friends'), unfollow_path(@user), class: 'btn btn-danger col-7' %>
+                    <% elsif current_user&.sent_follow_request_to?(@user) %>
+                        <%= button_to t('.cancel_request'), cancel_path(@user), class: 'btn btn-warning col-7' %>
+                    <% else%>
+                        <%= button_to t('.add_friend'), follow_path(@user), class: 'btn btn-success col-7' %>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+        <div class="col-7 bg-light border-start border-bottom rounded">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="result-tab" data-bs-toggle="tab" data-bs-target="#result" type="button" role="tab" aria-controls="result" aria-selected="true">
+                        <%= t '.s_results'%>
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="friends-tab" data-bs-toggle="tab" data-bs-target="#friends" type="button" role="tab" aria-controls="friends" aria-selected="true">
+                        <%= t '.friend_list'%>
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="result" role="tabpanel" aria-labelledby="result-tab">
+                    <table class="table table-striped mt-2">
+                        <thead>
+                            <tr class="table-success">
+                                <th scope="col"><%= t '.sport' %></th>
+                                <th scope="col"><%= t '.result'%></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><%= t('exercises.bench_press_max') + ':' %></td>
+                                <td>
+                                    <% if @user.result.bench_press_max.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.bench_press_max %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.bench_press') + ':' %></td>
+                                <td>
+                                    <% if @user.result.bench_press.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.bench_press %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.pull_ups_max') + ':' %></td>
+                                <td>
+                                    <% if @user.result.pull_ups_max.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.pull_ups_max %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.pull_ups') + ':' %></td>
+                                <td>
+                                    <% if @user.result.pull_ups.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.pull_ups %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.push_ups_bars_max') + ':' %></td>
+                                <td>
+                                    <% if @user.result.push_ups_bars_max.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.push_ups_bars_max %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.push_ups_bars') + ':' %></td>
+                                <td>
+                                    <% if @user.result.push_ups_bars.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.push_ups_bars %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.times' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.barbell_squat') + ':' %></td>
+                                <td>
+                                    <% if @user.result.barbell_squat.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.barbell_squat %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.kg' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%= t('exercises.run_100m') + ':' %></td>
+                                <td>
+                                    <% if @user.result.run_100m.nil? %>
+                                        <span class="fst-italic text-muted"><%= t '.no_result' %></span>
+                                    <% else %>
+                                        <%= @user.result.run_100m %>
+                                        <span class="fs-5 text-muted fst-italic offset-1"><%= t '.sec' %></span>
+                                    <% end %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <% if current_user == @user %>
+                        <%= button_to 'Обновить мои результаты', show_updres_path, class: 'btn btn-success mb-2' %>
+                    <% end %>
+                </div>
+                <div class="tab-pane fade" id="friends" role="tabpanel" aria-labelledby="friends-tab">
+                    <div class="mt-3">
+                        <h5 class="ms-1"><%= t('.friend_list') + ':' %></h5>
+                        <% if @user.followers.any? %>
+                            <% @user.followers.each do |follower| %>
+                                <div class="row ms-1 pb-1 border-bottom">
+                                    <div class="row col-8">
+                                        <% if follower.avatar.present? %>
+                                            <%= image_tag follower.thumbnail, class: 'col-2', height: '50px' %>
+                                        <% else %>
+                                            <img src="/images/default_avatar.png", height="50px", class="col-2">
+                                        <% end %>
+                                        <%= link_to follower.username, user_path(follower.id), class: "fs-5 col-9 mt-2" %>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% else %>
+                            <p class="fst-italic text-muted ms-3 fs-5"> <%= t '.empty' %></p>
+                        <% end %>
+                    </div>
+                    <% if current_user == @user %>
+                        <div class="mt-3"> 
+                            <% if current_user.follow_requests.any? %>
+                                <h5 class="ms-1"><%= t '.incoming_requests' %></h5>
+                                <% current_user.follow_requests.each do |request| %>
+                                <div class="row ms-1 pb-1 border-bottom">
+                                    <div class="row col-8">
+                                        <% if request.followerable.avatar.present? %>
+                                            <%= image_tag request.followerable.thumbnail, class: 'col-2', height: '50px' %>
+                                        <% else %>
+                                            <img src="/images/default_avatar.png", height="50px", class="col-2">
+                                        <% end %>
+                                        <%= link_to request.followerable.username, user_path(request.followerable.id), class: "fs-5 col-9 mt-2" %>
+                                    </div>
+                                    <div class="row col-2">
+                                        <%= button_to '+', accept_path(request.followerable), class: 'btn btn-outline-success col-9' %>  
+                                    </div>
+                                    <div class="row col-2">
+                                        <%= button_to '-', decline_path(request.followerable), class: 'btn btn-outline-danger col-9' %>
+                                    </div>
+                                </div>
+                                <% end %>
+                            <% end %>
+                        </div>
+
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

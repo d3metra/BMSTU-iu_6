@@ -1,0 +1,72 @@
+<div class='mb-2'>
+    <%= form_with url: update_results_path do |form |%>
+        <div>
+            <%= form.label 'Жим штанги лёжа(максимальный вес):' %>
+            <% if current_user.result.bench_press_max %>
+                <%= form.number_field :bench_press_max, class: 'form-control', step: '0.05',  min: '0', placeholder: '(укажите вес в кг)', value: "#{current_user.result.bench_press_max}" %>
+            <% else %>
+                <%= form.number_field :bench_press_max, class: 'form-control', step: '0.05',  min: '0', placeholder: '(укажите вес в кг)' %>
+            <% end %>
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Жим штанги лёжа(собственный вес):' %>
+            <% if current_user.result.bench_press %>
+                <%= form.number_field :bench_press, class: 'form-control', min: '0', placeholder: '(укажите вес в кг)',  value: "#{current_user.result.bench_press}" %>
+            <% else %>
+                <%= form.number_field :bench_press, class: 'form-control', min: '0',  placeholder: '(укажите кол-во повторений)' %>
+            <% end %>    
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Подтягивания(максимальный вес):' %>
+            <% if current_user.result.pull_ups_max %>
+                <%= form.number_field :pull_ups_max, class: 'form-control', step: '0.05', min: '0', placeholder: '(укажите вес в кг)', value: "#{current_user.result.pull_ups_max}" %>
+            <% else %>
+                <%= form.number_field :pull_ups_max, class: 'form-control', step: '0.05', min: '0',  placeholder: '(укажите вес в кг)' %>
+            <% end %>
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Подтянивания(собственный вес):' %>
+            <% if current_user.result.pull_ups %>
+                <%= form.number_field :pull_ups, class: 'form-control', min: '0',  placeholder: '(укажите кол-во повторений)', value: "#{current_user.result.pull_ups}" %>
+            <% else %>
+                <%= form.number_field :pull_ups, class: 'form-control', min: '0',  placeholder: '(укажите кол-во повторений)' %>
+            <% end %>
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Отжимания на брусьях(максимальный вес):' %>
+            <% if current_user.result.push_ups_bars_max%>
+                <%= form.number_field :push_ups_bars_max, class: 'form-control', step: '0.05', min: '0',  placeholder: '(укажите вес в кг)', value: "#{current_user.result.push_ups_bars_max}" %>
+            <% else %>
+                <%= form.number_field :push_ups_bars_max, class: 'form-control', step: '0.05', min: '0',  placeholder: '(укажите вес в кг)' %>
+            <% end %>          
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Отжимания на брусьях(собственный вес):' %>
+            <% if current_user.result.push_ups_bars %>
+                <%= form.number_field :push_ups_bars, class: 'form-control', min: '0',  placeholder: '(укажите кол-во повторений)', value: "#{current_user.result.push_ups_bars}" %>
+            <% else %>
+                <%= form.number_field :push_ups_bars, class: 'form-control', min: '0',  placeholder: '(укажите кол-во повторений)' %>
+            <% end%>
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Присед со штангой(максимальный вес):' %>
+            <% if current_user.result.barbell_squat %>
+                <%= form.number_field :barbell_squat, class: 'form-control', step: '0.05', min: '0', placeholder: '(укажите вес в кг)', value: "#{current_user.result.barbell_squat}" %>
+            <% else %>
+                <%= form.number_field :barbell_squat, class: 'form-control', step: '0.05', min: '0', placeholder: '(укажите вес в кг)' %>
+            <% end %>
+        </div>
+        <div class='mt-2'>
+            <%= form.label 'Бег 100 метров:' %>
+            <% if current_user.result.run_100m %>
+                <%= form.number_field :run_100m, class: 'form-control', step: '0.01', min: '0',  placeholder: '(укажите время в секундах "8.15")', value: "#{current_user.result.run_100m}" %>
+            <% else %>
+                <%= form.number_field :run_100m, class: 'form-control', step: '0.01', min: '0',  placeholder: '(укажите время в секундах "8.15")' %>
+            <% end %>
+        </div>
+        <div class='mt-2'>
+            <%= form.submit 'Подтвердить изменения', class: 'btn btn-outline-success' %>
+            <%= link_to 'Отмена', user_path(current_user), class: 'btn btn-outline-danger ms-2' %>
+        </div>
+    <% end %>
+</div>

@@ -1,0 +1,76 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark border-bottom">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">Soreva</a>
+            <img src="/images/soreva_icon.png" height="40">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to t('global.exercises'), root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.users'), users_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.сompetitions'), competition_path, class: 'nav-link' %>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <% if current_user.present? %>
+                    <%= link_to t('global.my_profile'), user_path(current_user.id), class: 'btn btn-primary' %>
+                <% else %>
+                    <%= link_to t('global.login'), new_session_path, class: 'btn btn-success' %>
+                    <%= link_to t('global.register'), new_user_path, class: 'btn btn-primary ms-3'%>
+                <% end %>
+            </div>
+         </div>
+    </nav>
+</header>
+
+
+<% if flash[:notice].present? %>
+    <div class="notice-message text-center fs-5 mt-2"><%= notice %></div>
+<% end %>
+<div class="container">
+    <div class="row mt-5">
+        <span class="font-monospace fw-bold fs-3 col-5 ps-3"><%= @exercise.name %></span>
+        <% if current_user&.admin? %>
+            <div class="dropdown col-4">
+                <button class="btn btn-warning dropdown-toggle col-7" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Настройки
+                    <img src="/images/settings.png" height="30">
+                </button>
+                <ul class="dropdown-menu dropend" aria-labelledby="dropdownMenuButton">
+                    <li><%= link_to 'Редактировать данные', edit_exercise_path(@exercise), class: 'dropdown-item btn btn-warning col-12' %></li>
+                    <li><%= button_to 'Удалить упражнение', @exercise, method: :delete, class: 'dropdown-item btn btn-danger col-12' %></li>
+                </ul>
+            </div>         
+        <% end %>    
+    </div>
+    <div class="row mt-1">
+        <div class="col-5">
+            <%= image_tag @exercise.middle %>
+        </div>
+        <div class="col-6">
+            <div class="technique-description rounded">
+                <h5 class="text-center">Техника выполнения:</h5>
+                <ul type="disk">
+                    <% @exercise.technique.split("\r\n").each do |string| %>
+                        <li class="mt-2"><%= string %></li>
+                    <% end %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 ms-1">
+        <button class="btn btn-outline-dark fs-5 col-4 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#description" aria-controls="collapseExample">
+            Показать описание упражнения
+        </button>
+    </div>
+    <div class="collapse bg-light bg-gradient border rounded ms-2" id="description">
+        <% @exercise.description.split("\r\n").each do |string| %>
+            <p class="fs-5"><%= string%></p> 
+        <% end %>
+    </div>
+</div>

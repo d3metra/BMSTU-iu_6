@@ -1,0 +1,56 @@
+<header>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark border-bottom">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">Soreva</a>
+            <img src="/images/soreva_icon.png" height="40">
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <%= link_to t('global.exercises'), root_path, class: 'nav-link' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.users'), users_path, class: 'nav-link active' %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to t('global.сompetitions'), competition_path, class: 'nav-link' %>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <% if current_user.present? %>
+                    <%= link_to t('global.my_profile'), user_path(current_user.id), class: 'btn btn-primary' %>
+                <% else %>
+                    <%= link_to t('global.login'), new_session_path, class: 'btn btn-success' %>
+                    <%= link_to t('global.register'), new_user_path, class: 'btn btn-primary ms-3'%>
+                <% end %>
+            </div>
+         </div>
+    </nav>
+</header>
+
+<%= form_with url: user_search_path do |form| %>
+    <div class="row mt-3">
+        <div class="col-9 ms-5">
+            <%= form.text_field :username_search, placeholder: t('user.username'), class: 'form-control' %>
+        </div>
+        <div class="col-1">
+            <%= form.submit t('.search'), class: 'btn btn-outline-primary fs-6 col-12' %>
+        </div>
+    </div>
+<% end %>
+<div id="users">
+    <% if @users.any? %>   
+        <% @users.each do |user| %>
+            <div class="col-12 mt-2 pb-1 border-bottom">
+                <% if user.avatar.present? %>
+                    <%= image_tag user.preview, class: 'offset-4'%>
+                <% else %>
+                    <img src="/images/default_avatar.png", height="100px", class="offset-4">
+                <% end %>
+                <%= link_to user.username, user_path(user.id), class: 'fs-2' %>
+            </div>
+        <% end %>   
+    <% else %>
+        <h4 class='fst-italic text-center'>Нет пользователей на сайтеы</h4>
+    <% end %>
+</div>
